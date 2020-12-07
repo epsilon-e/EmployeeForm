@@ -1,40 +1,104 @@
 <div class="container-fluid">
   <h3>Enter employee details</h3>
-  <form #userForm = "ngForm">
-      {{userForm.value | json}}
-      <hr>
-      {{userModel| json}}
+  <form #userForm="ngForm"(ngSubmit)="onSubmit()">
+   
+    <hr />
+   
     <div class="form-group">
       <label>Name</label>
-      <input type="text" class="form-control" name = "userName" [(ngModel)]= userModel.name />
+      <input
+        type="text"
+        required
+        #name="ngModel"
+        [class.is-valid]="name.valid && name.touched"
+        [class.is-invalid]="name.invalid && name.touched"
+        class="form-control is-invalid"
+        name="userName"
+        [(ngModel)]="userModel.name"
+      />
+      <small class="text-danger" [class.d-none]="name.valid || name.untouched"
+        >name is required</small
+      >
     </div>
     <div class="form-group">
       <label>Employee ID</label>
-      <input type="text" class="form-control" name ="eId" [(ngModel)]= userModel.eId />
+      <input
+        type="text"
+        required
+        #eID="ngModel"
+        [class.is-valid]="eID.valid && eID.touched"
+        [class.is-invalid]="eID.invalid && eID.touched"
+        class="form-control is-invalid"
+        name="eId"
+        [(ngModel)]="userModel.eId"
+      />
+      <small class="text-danger" [class.d-none]="eID.valid || eID.untouched"
+        >ID is required</small
+      >
     </div>
     <div class="form-group">
-        <label>Department</label>
-      <select class="custom-select" name = "department" [(ngModel)]= userModel.department>
-        <option selected>select department</option>
-        <option *ngFor="let department of Departments">{{ department}}</option>
+      <label>Department</label>
+      <select
+        #department="ngModel"
+        (blur)="validateDepartment(department.value)"
+        (change)="validateDepartment(department.value)"
+        [class.is-valid]="!dError && department.touched"
+        [class.is-invalid]="dError && department.touched"
+        class="custom-select"
+        name="department"
+        [(ngModel)]="userModel.department"
+      >
+        <option value="default">select department</option>
+        <option *ngFor="let department of Departments">{{ department }}</option>
       </select>
-
+      <small
+        class="text-danger"
+        [class.d-none]="!dError || department.untouched"
+        >Please select Department</small
+      >
     </div>
     <div class="form-group">
       <label>Email ID</label>
-      <input type="email" class="form-control" name="email" [(ngModel)]= userModel.email/>
+      <input
+        type="email"
+        #email="ngModel"
+        required
+        required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        [class.is-valid]="email.valid && email.touched"
+        [class.is-invalid]="email.invalid && email.touched"
+        class="form-control"
+        name="email"
+        [(ngModel)]="userModel.email"
+      />
+      <small [class.d-none]="email.valid || email.untouched" class="text-danger">Provide valid email ID</small>
     </div>
     <div class="form-group">
       <label>Date Of Joining</label>
-      <input type="date" class="form-control" name ="DOJ" [(ngModel)]= userModel.DOJ/>
+      <input
+        type="date"
+        value = "2001-03-01"
+        required
+        #date="ngModel"
+        [class.is-valid]="date.valid && date.touched"
+        [class.is-invalid]= "date.invalid && date.touched"
+        class="form-control "
+        name="DOJ"
+        [(ngModel)]="userModel.DOJ"
+      />
+     
+      <small class="text-danger" [class.d-none]="date.valid || date.untouched">please provide valid date</small>
     </div>
-    <button class ="btn btn-primary" type="submit">Submit</button>
-    <button Class = "btn btn-danger" >clear</button>
+    <button
+      class="btn btn-primary"
+      [disabled]="userForm.form.invalid || dError"
+      type="submit"
+    >
+      Submit
+    </button>
+    <button Class="btn btn-danger">clear</button>
   </form>
-  
 
-  
-  d) Email Id - text e) Date of Joining(DOJ) - add calendar to select date. f)
-  Submit Details - a button to submit data. g) Clear - a button to clear form
+  d) Email is Id - text e) Date of Joining(DOJ) - add calendar to select date.
+  f) Submit Details - a button to submit data. g) Clear - a button to clear form
   data.
 </div>
