@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'EmployeeForm';
+  showForm = false;
+
+  displayForm(){
+    this.showForm =!this.showForm;
+  }
 }
