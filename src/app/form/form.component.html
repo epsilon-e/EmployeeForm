@@ -1,5 +1,40 @@
-<div class = "container-fluid">
+<div class="container-fluid">
+  <h3>Enter employee details</h3>
+  <form #userForm = "ngForm">
+      {{userForm.value | json}}
+      <hr>
+      {{userModel| json}}
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" class="form-control" name = "userName" [(ngModel)]= userModel.name />
+    </div>
+    <div class="form-group">
+      <label>Employee ID</label>
+      <input type="text" class="form-control" name ="eId" [(ngModel)]= userModel.eId />
+    </div>
+    <div class="form-group">
+        <label>Department</label>
+      <select class="custom-select" name = "department" [(ngModel)]= userModel.department>
+        <option selected>select department</option>
+        <option *ngFor="let department of Departments">{{ department}}</option>
+      </select>
 
+    </div>
+    <div class="form-group">
+      <label>Email ID</label>
+      <input type="email" class="form-control" name="email" [(ngModel)]= userModel.email/>
+    </div>
+    <div class="form-group">
+      <label>Date Of Joining</label>
+      <input type="date" class="form-control" name ="DOJ" [(ngModel)]= userModel.DOJ/>
+    </div>
+    <button class ="btn btn-primary" type="submit">Submit</button>
+    <button Class = "btn btn-danger" >clear</button>
+  </form>
+  
 
-    
+  
+  d) Email Id - text e) Date of Joining(DOJ) - add calendar to select date. f)
+  Submit Details - a button to submit data. g) Clear - a button to clear form
+  data.
 </div>
