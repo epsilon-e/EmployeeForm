@@ -8,7 +8,12 @@ import { User } from 'src/app/user';
 export class AppComponent {
   title = 'EmployeeForm';
   showForm = false;
+  showButton=false;
+  hideMe(){
+    this.showButton=true;
+  }
   displayForm(){
+    this.hideMe();
     this.showForm =true;
   }
   

@@ -1,7 +1,6 @@
-<div class="container-fluid" [class.d-none]="showTable" >
-  <h3>Enter employee details</h3>
+<div class="container-fluid" [class.d-none]="showTable"  style="border:3px solid rgb(142, 140, 233)">
+  <h2>Enter Employee Details</h2>
   <form #userForm="ngForm">
-    <hr />
     <div class="form-group">
       <label>Name</label>
       <input
@@ -74,7 +73,7 @@
       >
     </div>
     <div class="form-group">
-      <label>Date Of Joining</label>
+      <label>Date of Joining</label>
       <input
         type="date"
         value=""
@@ -103,9 +102,9 @@
   </form>
 </div>
 
-<div class="container-fluid" [class.d-none]="!showTable">
-  <table class="table table-light">
-    <thead class="thead-light">
+<div class="tableFixHead" [class.d-none]="!showTable">
+  <table>
+    <thead>
       <tr>
         <th>Sr. No</th>
         <th>Name</th>
@@ -125,13 +124,15 @@
         <td>{{ i.email }}</td>
         <td>{{ i.DOJ }}</td>
         <td>
-          <button class="btn btn-secondary" (click)="deleteRecord(k)">
+          <button class="btn btn-warning" (click)="deleteRecord(k)">
             Delete me
           </button>
         </td>
       </tr>
     </tbody>
   </table>
+</div>
+<div [class.d-none]="!showTable">
   <button
     class="btn btn-primary"
     (click)="hideTable()"
