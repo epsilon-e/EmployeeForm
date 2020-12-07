@@ -52,7 +52,11 @@ export class FormComponent implements OnInit {
     });
    console.log(this.database); 
   }
+  hideRow=true;
   hideTable(){
     this.showTable = false;
+  }
+  deleteRecord(index){
+    this.database.splice(index,1);
   }
 }
