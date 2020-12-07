@@ -7,23 +7,20 @@ import {AppComponent} from 'src/app/app.component';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
-  user = {
-   name:'',
-   eId:'',
-   department:'',
-   email:'',
-   DOJ:''
-  }
-
+  
+  name;
+  eId;
+  department;
+  email;
+  DOJ;
+  userModel = new User();
   constructor() { }
   database= [];
+  dummy = [];
   ngOnInit(): void {
   }
   Departments =['Finance', 'Marketing', 'Sales', 'IT', 'Human Resources'];
   dError = true;
- 
-  userModel = new User();
-  
   validateDepartment(value){
     if(value === 'default'){
       this.dError = true;
@@ -32,10 +29,30 @@ export class FormComponent implements OnInit {
     }
 
   }
+  isClear=false;
+  clearResponse(){
+   document.getElementById('myreset').click();
+  }
+  showTable=false;
   onSubmit(){
+    this.showTable=true;
     console.log("submitted");
-    //  let userModel1 = new User('userModel.name.value','userModel.eId.value','userModel.department.value','userModel.email.value','userModel.DOJ.value');
-    this.database.push(this.userModel);
-    console.log(this.database);
+    this.name = this.userModel.name;
+    this.DOJ=this.userModel.DOJ;
+    this.department=this.userModel.department;
+    this.eId=this.userModel.eId;
+    this.email=this.userModel.email;
+    
+    this.database.push({
+      name:this.name,
+      eId:this.eId,
+      department:this.department,
+      email: this.email,
+      DOJ:this.DOJ
+    });
+   console.log(this.database); 
+  }
+  hideTable(){
+    this.showTable = false;
   }
 }

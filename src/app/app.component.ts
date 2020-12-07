@@ -9,9 +9,7 @@ export class AppComponent {
   title = 'EmployeeForm';
   showForm = false;
   displayForm(){
-    this.showForm =!this.showForm;
+    this.showForm =true;
   }
-  createUser(){
   
-  }
 }

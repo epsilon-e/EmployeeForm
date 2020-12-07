@@ -1,9 +1,7 @@
-<div class="container-fluid">
+<div class="container-fluid"[class.d-none]="showTable">
   <h3>Enter employee details</h3>
-  <form #userForm="ngForm"(ngSubmit)="onSubmit()">
-   
+  <form #userForm="ngForm" >
     <hr />
-   
     <div class="form-group">
       <label>Name</label>
       <input
@@ -76,7 +74,7 @@
       <label>Date Of Joining</label>
       <input
         type="date"
-        value = "2001-03-01"
+        value = ""
         required
         #date="ngModel"
         [class.is-valid]="date.valid && date.touched"
@@ -92,13 +90,45 @@
       class="btn btn-primary"
       [disabled]="userForm.form.invalid || dError"
       type="submit"
+      (click)="onSubmit()"
     >
       Submit
     </button>
-    <button Class="btn btn-danger">clear</button>
+    <button id ="myreset" Class="btn btn-danger" type = "reset">clear</button>
   </form>
-
-  d) Email is Id - text e) Date of Joining(DOJ) - add calendar to select date.
-  f) Submit Details - a button to submit data. g) Clear - a button to clear form
-  data.
 </div>
+
+<div class="container-fluid"[class.d-none]="!showTable">
+  <table class="table table-light">
+    <thead class="thead-light">
+      <tr>
+        <th>
+          Name:
+        </th>
+        <th>
+          EmployeeID
+        </th>
+        <th>
+          Department
+        </th>
+        <th>
+          Email ID
+        </th>
+        <th>
+          DOJ
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let i of database">
+          <td>{{i.name}}</td>
+          <td>{{i.eId}}</td>
+          <td>{{i.department}}</td>
+          <td>{{i.email}}</td>
+          <td>{{i.DOJ}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-primary" (click)="hideTable()" (click)="clearResponse()">Add Employee</button>
+</div>
+

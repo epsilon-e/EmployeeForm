@@ -1,8 +1,8 @@
 <div class="container-fluid">
   <div class="center">
-    <button class="btn btn-primary" (click)="createUser()" (click)="displayForm()">
+    <button class="btn btn-primary" (click)="displayForm()">
       Add New Employee
     </button>
   </div>
-  <app-form *ngIf="showForm"></app-form>
+  <app-form [class.d-none]="!showForm"></app-form>
 </div>
